@@ -9,7 +9,7 @@
   <script>
     $.ajax({
       type: 'GET',
-      url: 'https://pokeapi.co/api/v2/pokemon/25',
+      url: 'https://yts.am/api/v2/list_movies.json',
       success: function(data) {
 
         console.log('pokemon usando jQuery', data)
@@ -20,7 +20,7 @@
       }
     })
 
-    fetch('https://pokeapi.co/api/v2/pokemon/25')
+    fetch('https://yts.am/api/v2/list_movies.json')
       .then(function(response) {
         console.log(response)
         return response.json()
