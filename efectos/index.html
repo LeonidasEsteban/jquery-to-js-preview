@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax</title>
+  <style>
+    .texto {
+      /*display: none;*/
+      /*opacity: 0;*/
+    }
+    .fadeIn {
+      animation: fadeIn 400ms cubic-bezier(.02, .01, .47, 1) forwards;
+      /*transition: opacity 400ms;*/
+      /*opacity: 1;*/
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    .fadeOut {
+      animation: fadeOut 400ms cubic-bezier(.02, .01, .47, 1) forwards;
+      /*transition: opacity 400ms;*/
+      /*opacity: 0;*/
+    }
+  </style>
+</head>
+<body>
+  <!--  FadeIn, FadeOut
+  Efectos de entrada y salida
+  Hide y Show
+  Ocultar y mostrar elementos sin transiciones -->
+
+  <p id="texto" class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione inventore voluptas obcaecati laudantium, commodi animi placeat ab, expedita alias aut doloribus quibusdam sequi. In totam alias enim labore autem numquam?</p>
+  <p id="texto2" class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione inventore voluptas obcaecati laudantium, commodi animi placeat ab, expedita alias aut doloribus quibusdam sequi. In totam alias enim labore autem numquam?</p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    var $texto = $('#texto');
+
+
+    function $$(id) {
+      return document.getElementById(id);
+    }
+    const $texto2 = $$('texto2');
+    // $texto2.classList.add('fadeIn');
+    // $texto2.classList.add('fadeOut');
+    window.counter = 0
+    function fadeIn($el) {
+      setTimeout(() => {
+        $el.classList.add('fadeIn');
+        $el.classList.remove('fadeOut');
+        window.counter--
+      }, (window.counter * 400))
+      window.counter++
+    }
+    function fadeOut($el) {
+      setTimeout(() => {
+        $el.classList.add('fadeOut');
+        $el.classList.remove('fadeIn');
+        window.counter--
+
+      }, (window.counter * 400))
+      window.counter++
+    }
+    $texto.fadeOut()
+    fadeOut(texto2)
+    $texto.fadeIn()
+    fadeIn(texto2)
+
+
+  </script>
+</body>
+</html>

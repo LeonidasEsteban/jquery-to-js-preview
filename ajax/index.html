@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax</title>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $.ajax({
+      type: 'GET',
+      url: 'https://pokeapi.co/api/v2/pokemon/25',
+      success: function(data) {
+
+        console.log('pokemon usando jQuery', data)
+      },
+      error: function(error) {
+        // console.log('hubo un error', error)
+        console.log('hubo un error', error.responseJSON.detail)
+      }
+    })
+
+    fetch('https://pokeapi.co/api/v2/pokemon/25')
+      .then(function(response) {
+        console.log(response)
+        return response.json()
+      })
+      .then(function(pokemon) {
+        console.log('pokemon usando fetch', pokemon)
+      })
+      .catch(function(error) {
+        console.log('error rrrr', error)
+      })
+  </script>
+</body>
+</html>
