@@ -182,7 +182,12 @@ body {
 }
 
 .primaryPlaylistItem {
+  cursor: pointer;
+  transition: .3s;
   /*border: 1px solid blue;*/
+}
+.primaryPlaylistItem:hover {
+  transform: scale(1.1)
 }
 
 .primaryPlaylistItem-image {
@@ -220,4 +225,19 @@ body {
 .featuring-album {
   font-size: 1.3em;
   margin: 10px;
+}
+
+
+.fadeIn {
+  animation: 300ms fadeIn;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
