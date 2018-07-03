@@ -5,9 +5,10 @@
   <title>Platzi Video</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="src/css/home.css" />
+  <link rel="stylesheet" href="src/css/modal.css" />
 </head>
 <body>
-  <section class="home">
+  <section class="home" id="home">
     <div class="home-sidebar">
       <div class="sidebar">
         <div class="logo">
@@ -175,18 +176,21 @@
             <h3 class="primaryPlaylist-topic">A los golpes</h3>
             <h2 class="primaryPlaylist-title">Acción</h2>
             <div class="primaryPlaylist-list" id="action">
+              <img src="src/images/loader.gif" width="50" height="50" alt="">
             </div>
           </div>
           <div class="primaryPlaylist">
             <h3 class="primaryPlaylist-topic">Para llorar</h3>
             <h2 class="primaryPlaylist-title">Drama</h2>
             <div class="primaryPlaylist-list" id="drama">
+              <img src="src/images/loader.gif" width="50" height="50" alt="">
             </div>
           </div>
           <div class="primaryPlaylist">
             <h3 class="primaryPlaylist-topic">Dibujitos animados</h3>
             <h2 class="primaryPlaylist-title">Animación</h2>
             <div class="primaryPlaylist-list" id="animation">
+              <img src="src/images/loader.gif" width="50" height="50" alt="">
             </div>
           </div>
         </div>
@@ -196,115 +200,19 @@
 
     </div>
   </section>
+  <div class="overlay" id="overlay">
+  </div>
+  <div class="modal" id="modal">
+    <h1>Título de pelicula</h1>
+    <div class="modal-content">
+      <img src="" alt="" width="170" height="256">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione impedit maiores enim alias ex accusantium quasi cum autem, nam, voluptas tenetur laudantium quod! Odit voluptate illo, voluptas vel quia, quae.</p>
+    </div>
+    <div class="modal-buttons">
+      <button class="modal-btn primary" id="hide-modal">Cerrar Modal</button>
+    </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script>
-    async function load() {
-      async function getData(url) {
-        const response = await fetch(url);
-        const data = await response.json();
-        return data;
-      }
-      // async function getMovieList() {
-      //   const response = await fetch('https://yts.am/api/v2/list_movies.json?genre=action');
-      //   const data = await response.json();
-      //   return data;
-      // }
-
-
-      function createTemplate(HTMLString) {
-        const html = document.implementation.createHTMLDocument();
-        html.body.innerHTML = HTMLString;
-        return html.body.children[0];
-      }
-
-      function videoItemTemplate(data) {
-        return (`
-          <div class="primaryPlaylistItem">
-            <div class="primaryPlaylistItem-image">
-              <img src="${data.medium_cover_image}">
-            </div>
-            <h4 class="primaryPlaylistItem-title">
-              ${data.title}
-            </h4>
-          </div>
-        `)
-      }
-
-      // const $actionContainer = document.querySelector('#action')
-
-
-      // actionList.movies.forEach(movie => {
-      //   const HTMLString = videoItemTemplate(movie);
-      //   const movieElement = createTemplate(HTMLString);
-      //   $actionContainer.appendChild(movieElement);
-      // })
-      //
-      function renderMovieList(list, $container) {
-        list.movies.forEach(movie => {
-          const HTMLString = videoItemTemplate(movie);
-          const movieElement = createTemplate(HTMLString);
-          $container.appendChild(movieElement);
-          movieElement.classList.add('fadeIn')
-        })
-      }
-      const $actionContainer = document.querySelector('#action');
-      const $dramaContainer = document.querySelector('#drama');
-      const $animationContainer = document.querySelector('#animation');
-
-      const { data: actionList } = await getData('https://yts.am/api/v2/list_movies.json?genre=action');
-      const { data: dramaList } = await getData('https://yts.am/api/v2/list_movies.json?genre=drama');
-      const { data: animationList } = await getData('https://yts.am/api/v2/list_movies.json?genre=animation');
-      renderMovieList(actionList, $actionContainer)
-      renderMovieList(dramaList, $dramaContainer)
-      renderMovieList(animationList, $animationContainer)
-      document.querySelectorAll('.primaryPlaylistItem').forEach((element) => {
-        element.addEventListener('click', () => {
-          alert(element.querySelector('.primaryPlaylistItem-title').textContent)
-
-        })
-      })
-
-      const $featuring = document.querySelector('#featuring');
-
-      function featuringTemplate(data) {
-        return (`
-          <div class="featuring">
-            <div class="featuring-image">
-              <img src="${data.medium_cover_image}" width="100" height="100" alt="">
-            </div>
-            <div class="featuring-content">
-              <p class="featuring-title">Continúa viendo</p>
-              <p class="featuring-album">${data.title}</p>
-            </div>
-          </div>
-        `)
-      }
-      const BASE_API = 'https://yts.am/api/v2/'
-
-      // async function getData(url) {
-      //   const response = await fetch(url);
-      //   const data = await response.json();
-      //   return data;
-      // }
-
-      $form = document.querySelector('#form');
-
-      $form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const data = new FormData($form);
-        const { data: { movies: pelis } } = await getData(`${BASE_API}list_movies.json?limit=1&query_term=${data.get('name')}`);
-        const HTMLString = featuringTemplate(pelis[0]);
-        // const movieElement = createTemplate(HTMLString);
-        $featuring.innerHTML = HTMLString;
-      });
-
-
-
-
-
-    }
-    load();
-
-  </script>
+  <script src="src/js/home.js"></script>
 </body>
 </html>

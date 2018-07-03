@@ -9,9 +9,12 @@ body {
   display: grid;
   height: 100vh;
   grid-template-columns: 350px 1fr;
-  grid-template-rows: 1fr 150px;
+  grid-template-rows: 1fr 0;
   grid-template-areas: "sidebar primary"
                        "sidebar featuring";
+}
+.home.search-active {
+  grid-template-rows: 1fr 150px;
 }
 
 .home-sidebar {
@@ -22,6 +25,11 @@ body {
 }
 .home-featuring {
   grid-area: featuring;
+  display: grid;
+}
+.home-featuring img {
+  align-self: center;
+  justify-self: center;
 }
 
 /*Sidebar*/
@@ -29,7 +37,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr 1fr;
-  background: #15192b;
+  background: #171929;
   color: white;
   padding: 1em;
   box-sizing: border-box;
@@ -137,9 +145,13 @@ body {
   box-shadow: 0 0 10px #f0f0f0;
   box-sizing: border-box;;
 }
+.primary-search {
+  align-self: center;
+}
 
 .primary-user {
   justify-self: end;
+  margin: 5px 0;
 }
 
 .user p {
@@ -186,16 +198,16 @@ body {
   transition: .3s;
   /*border: 1px solid blue;*/
 }
-.primaryPlaylistItem:hover {
+/*.primaryPlaylistItem:hover {
   transform: scale(1.1)
 }
-
+*/
 .primaryPlaylistItem-image {
 }
 
 .primaryPlaylistItem img {
-  width: 250px;
-  height: 180px;
+  width: 170px;
+  height: 256px;
   object-fit: cover;
 }
 .primaryPlaylistItem-title {
@@ -229,7 +241,7 @@ body {
 
 
 .fadeIn {
-  animation: 300ms fadeIn;
+  animation: 1000ms fadeIn;
 }
 
 @keyframes fadeIn {
